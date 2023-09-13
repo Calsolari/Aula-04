@@ -1,92 +1,165 @@
-'use strict'
+'use scrict'
 
-const button = document.getElementById('somar')
-const buttonIdent = document.getElementById('ident')
-const botaoMedia = document.getElementById('media')
-const botaoSomar3 = document.getElementById('somar3')
-const botaoVerificar = document.getElementById('verificar')
+const botaoMostrarTodosNumeros = document.getElementById('botao-mostrar-todos-numeros')
+const botaoMostrarNumerosPares = document.getElementById('botao-mostrar-numeros-pares')
+const botaoMostrarNumerosImpares = document.getElementById('botao-mostrar-numeros-impares')
+const botaoMostrarMultiplos3 = document.getElementById('botao-mostrar-multiplos-3')
+const botaoMostrarMultiplos3e4 = document.getElementById('botao-mostrar-multiplos-3e4')
+const botaoMostrarMultiplos3ou4 = document.getElementById('botao-mostrar-multiplos-3ou4')
+const botaoMostrarProximo = document.getElementById('botao-mostrar-proximo')
+const botaoMostrarProximoPar = document.getElementById('botao-mostrar-proximo-par')
+const botaoMostrarDobro = document.getElementById('botao-mostrar-dobro')
 
-function somar () {
-    const numeroUm = Number(document.getElementById('n1').value)
-    const numeroDois = Number(document.getElementById('n2').value)
-    const resultado1 = document.getElementById('resultado1')
-    const soma = numeroUm + numeroDois
 
-    resultado1.textContent = soma
-}button.addEventListener('click', somar)
+function mostrarTodosNumeros (){
+    const numeros = document.getElementById('numeros').value.split(',')
+    const container = document.getElementById('container-todos-numeros')
 
-function identificar () {
-    const numeroItem2 = Number(document.getElementById('numberit2').value)
-    const positivoOuNegativo = document.getElementById('identPosNeg')
+    container.replaceChildren('')
 
-    if (numeroItem2 > 0 ){
-        positivoOuNegativo.textContent = 'Positivo'
-    }else if(numeroItem2 < 0){
-        positivoOuNegativo.textContent = 'Negativo'
-    }else {
-        positivoOuNegativo.textContent = 'Zero'
-    }   
-}buttonIdent.addEventListener('click', identificar)
+    const ultimoIndice = numeros.length
+    for (let indice = 0; indice < ultimoIndice; indice++){
+        const novoSpan = document.createElement('span')
+        novoSpan.textContent = numeros[indice]
+        container.appendChild(novoSpan)
 
-function Media () {
+    }
+}
 
-    const nota1 = Number(document.getElementById('nota-1').value)
-    const nota2 = Number(document.getElementById('nota-2').value)
-    const nota3 = Number(document.getElementById('nota-3').value)
-    const nota4 = Number(document.getElementById('nota-4').value)
+function mostrarNumerosPares (){
+    const numeros = document.getElementById('numeros').value.split(',')
+    const container = document.getElementById('container-numeros-pares')
 
-    const media = (nota1 + nota2 + nota3 + nota4) / 4
+    container.replaceChildren('')
+    const ultimoIndice = numeros.length
 
-    if (media >= 7){
-
-        alert(`Sua média é ${media}. Parabéns, você foi aprovado!`)
-
-    } else {
-        let notaExame = prompt(`Sua média é ${media}. Insira sua nota de exame`)
-        const media2 = (media + Number(notaExame)) / 2
-        
-        if (media2 >= 5){
-            alert(`Sua nova média é ${media2}. Aprovado em exame`)
-        }else{
-            alert(`Sua nova média é ${media2}. Você foi reprovado`)
+    for (let indice = 0; indice < ultimoIndice; indice++){
+        if (numeros[indice] % 2 == 0){
+            const novoSpan = document.createElement('span')
+            novoSpan.textContent = numeros[indice]
+            container.appendChild(novoSpan)
         }
     }
-}botaoMedia.addEventListener('click', Media)
+}
 
-function somarTresValores () {
-    const valor1 = Number(document.getElementById('valor1').value)
-    const valor2 = Number(document.getElementById('valor2').value)
-    const valor3 = Number(document.getElementById('valor3').value)
-    const resultado3 = document.getElementById('somar-3-valores')
-    const soma3 = valor1 + valor2 + valor3
+function mostrarNumerosImpares (){
+    const numeros = document.getElementById('numeros').value.split(',')
+    const container = document.getElementById('container-numeros-impares')
 
-    if(soma3 >= 100){
-        resultado3.textContent = soma3   
-    }else {
-        resultado3.textContent = 'Seu total não é maior que 100'
-    }
-}botaoSomar3.addEventListener('click', somarTresValores)
+    container.replaceChildren('')
+    const ultimoIndice = numeros.length
 
-function verificarMultiplos() {
-    const numeroNove = Number(document.getElementById('n9').value)
-    const numeroDez = Number(document.getElementById('n10').value)
-    const numeroOnze = Number(document.getElementById('n11').value)
-    const numeroDoze = Number(document.getElementById('n12').value)
-    const resultadoMultiplos = document.getElementById('multiplos')
+    for (let indice = 0; indice < ultimoIndice; indice++){
+        if (numeros[indice] % 2 != 0){
+            const novoSpan = document.createElement('span')
+            novoSpan.textContent = numeros[indice]
+            container.appendChild(novoSpan)
+        }
+    }
+}
 
-    let aux = ''
+function mostrarMultiplosde3 (){
+    const numeros = document.getElementById('numeros').value.split(',')
+    const container = document.getElementById('container-numeros-multiplos-3')
 
-    if (numeroNove % 2 == 0 || numeroNove % 3 == 0){  
-        aux = numeroNove
+    container.replaceChildren('')
+    const ultimoIndice = numeros.length
+
+    for (let indice = 0; indice < ultimoIndice; indice++){
+        if (numeros[indice] % 3 == 0){
+            const novoSpan = document.createElement('span')
+            novoSpan.textContent = numeros[indice]
+            container.appendChild(novoSpan)
+        }
     }
-    if (numeroDez % 2 == 0 || numeroDez % 3 == 0){
-        aux = `${aux} - ${numeroDez}`
+}
+
+function mostrarMultiplosde3e4 (){
+    const numeros = document.getElementById('numeros').value.split(',')
+    const container = document.getElementById('container-numeros-multiplos-3e4')
+
+    container.replaceChildren('')
+    const ultimoIndice = numeros.length
+
+    for (let indice = 0; indice < ultimoIndice; indice++){
+        if (numeros[indice] % 3 == 0 && numeros[indice] % 4 == 0){
+            const novoSpan = document.createElement('span')
+            novoSpan.textContent = numeros[indice]
+            container.appendChild(novoSpan)
+        }
     }
-    if (numeroOnze % 2 == 0 || numeroOnze % 3 == 0){  
-        aux = `${aux} - ${numeroOnze}`
+}
+
+function mostrarMultiplosde3ou4 (){
+    const numeros = document.getElementById('numeros').value.split(',')
+    const container = document.getElementById('container-numeros-multiplos-3ou4')
+
+    container.replaceChildren('')
+    const ultimoIndice = numeros.length
+
+    for (let indice = 0; indice < ultimoIndice; indice++){
+        if (numeros[indice] % 3 == 0 || numeros[indice] % 4 == 0){
+            const novoSpan = document.createElement('span')
+            novoSpan.textContent = numeros[indice]
+            container.appendChild(novoSpan)
+        }
     }
-    if (numeroDoze % 2 == 0 || numeroDoze % 3 == 0){  
-        aux = `${aux} - ${numeroDoze}`
+}
+
+function mostrarProximo (){
+    const numeros = document.getElementById('numeros').value.split(',')
+    const container = document.getElementById('container-numeros-proximo')
+
+    container.replaceChildren('')
+    const ultimoIndice = numeros.length
+
+    for (let indice = 0; indice < ultimoIndice; indice++){
+        const novoSpan = document.createElement('span')
+        novoSpan.textContent = Number(numeros[indice]) + 1
+        container.appendChild(novoSpan)
+    }   
+}
+
+function mostrarProximoPar (){
+    const numeros = document.getElementById('numeros').value.split(',')
+    const container = document.getElementById('container-numeros-proximo-par')
+
+    container.replaceChildren('')
+    const ultimoIndice = numeros.length
+
+    for (let indice = 0; indice < ultimoIndice; indice++ ){
+        if (numeros[indice] % 2 == 0){
+            const novoSpan = document.createElement('span')
+            novoSpan.textContent = Number(numeros[indice]) + 2
+            container.appendChild(novoSpan)
+        }else{
+            const novoSpan = document.createElement('span')
+            novoSpan.textContent = Number(numeros[indice]) + 1
+            container.appendChild(novoSpan)
+        }
     }
-    resultadoMultiplos.textContent = aux
-}botaoVerificar.addEventListener('click', verificarMultiplos)
+}
+
+function mostrarDobro () {
+    const numeros = document.getElementById('numeros').value.split(',')
+    const container = document.getElementById('container-numeros-dobro')
+
+    container.replaceChildren('')
+    const ultimoIndice = numeros.length
+
+    for (let indice = 0; indice < ultimoIndice; indice++){
+        const novoSpan = document.createElement('span')
+        novoSpan.textContent = Number(numeros[indice]) * 2
+        container.appendChild(novoSpan)
+    }
+}
+
+
+botaoMostrarTodosNumeros.addEventListener('click', mostrarTodosNumeros)
+botaoMostrarNumerosPares.addEventListener('click', mostrarNumerosPares)
+botaoMostrarNumerosImpares.addEventListener('click', mostrarNumerosImpares)
+botaoMostrarMultiplos3.addEventListener('click', mostrarMultiplosde3)
+botaoMostrarMultiplos3e4.addEventListener('click', mostrarMultiplosde3e4)
+botaoMostrarMultiplos3ou4.addEventListener('click', mostrarMultiplosde3ou4)
+botaoMostrarProximo.addEventListener('click', mostrarProximoPar)
+botaoMostrarDobro.addEventListener('click', mostrarDobro)
